@@ -1,0 +1,132 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DoodlePrint</title><style>
+:root{--p:#6f3b72;--l:#f7f0f8;--b:#ddd0df;--t:#302832}*{box-sizing:border-box}body{margin:0;background:#fbf9fc;color:var(--t);font-family:system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:900px;margin:auto;padding:24px 16px 50px}.brand{text-align:center;margin-bottom:22px}.brand h1{margin:0;color:var(--p);font-size:30px}.brand p{margin:5px;color:#756c78}.card{background:#fff;border:1px solid var(--b);border-radius:18px;padding:22px;margin:15px 0;box-shadow:0 5px 20px #4b154b0a}h2{margin:0 0 18px;font-size:19px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.f{display:flex;flex-direction:column;gap:7px}.full{grid-column:1/-1}label{font-weight:700;font-size:14px}input,select,textarea{font:inherit;border:1px solid var(--b);border-radius:10px;padding:11px 12px;background:#fff;outline:0}input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3px #6f3b7215}.rad{display:flex;gap:9px;flex-wrap:wrap}.rad label{padding:10px 12px;border:1px solid var(--b);border-radius:10px;font-weight:600}.rad input{width:auto;padding:0}.actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}button{border:0;border-radius:10px;padding:11px 17px;font-weight:750;cursor:pointer}.primary{background:var(--p);color:#fff}.secondary{background:var(--l);color:var(--p)}.hidden{display:none}.summary{display:grid;grid-template-columns:1fr 1fr;gap:9px}.item{background:var(--l);padding:10px 12px;border-radius:9px}.item small{display:block;color:#756c78}.notice{background:#f1faf5;border:1px solid #cde8d8;padding:11px 13px;border-radius:10px;font-size:13px;margin-bottom:12px}.pw{position:relative}.copy{position:absolute;right:9px;top:9px}.prompt{min-height:570px;width:100%;resize:vertical;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;padding-top:46px}.foot{text-align:center;color:#817783;font-size:12px;margin-top:18px}@media(max-width:650px){.grid,.summary{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:17px}}
+</style></head><body><main class="wrap"><header class="brand"><h1>✎ DoodlePrint</h1><p>AI Worksheet Prompt Generator</p><p>Create once. Generate page by page.</p></header>
+<section class="card" id="form"><h2>1. Atur Worksheet</h2><div class="grid">
+<div class="f"><label>Jenis Aktivitas</label><select id="activity"><option>Mewarnai</option><option>Menebalkan (Tracing)</option><option>Mencocokkan</option><option>Berhitung</option><option>Maze</option><option>Puzzle</option><option>Menggunting</option><option>Menempel</option><option>Menulis</option><option>Menarik Garis</option><option>Custom</option></select></div>
+<div class="f"><label>Tema Utama</label><input id="theme" placeholder="Contoh: Dinosaurus"></div>
+<div class="f"><label>Target Usia</label><select id="age"><option>2–3 tahun</option><option selected>3–4 tahun</option><option>4–5 tahun</option><option>5–6 tahun</option><option>6–7 tahun</option><option>7–8 tahun</option><option>Custom</option></select></div>
+<div class="f"><label>Jumlah Halaman</label><input id="pages" type="number" min="1" max="100" value="10"></div>
+<div class="f"><label>Nama Anak <small>(opsional)</small></label><input id="child" placeholder="Contoh: Mazna"></div>
+<div class="f"><label>Gaya Visual</label><select id="style"><option>Storybook Vector</option><option>Cute Cartoon</option><option>Kawaii</option><option>Flat Vector</option><option>Simple Line Art</option><option>Coloring Book</option><option>Custom</option></select></div>
+<div class="f"><label>Format</label><select id="format"><option>A4 Portrait</option><option>A4 Landscape</option><option>Square</option><option>16:9</option><option>Custom</option></select></div>
+<div class="f"><label>Bahasa Master Prompt</label><div class="rad"><label><input type="radio" name="lang" value="id" checked> 🇮🇩 Indonesia</label><label><input type="radio" name="lang" value="en"> 🇬🇧 English</label></div></div>
+</div><div class="actions"><button class="primary" onclick="confirmData()">Buat Master Prompt →</button></div></section>
+<section class="card hidden" id="confirm"><h2>2. Konfirmasi Data</h2><div class="summary" id="summary"></div><div class="actions"><button class="secondary" onclick="hide('confirm')">← Edit Data</button><button class="primary" onclick="generate()">✓ Generate Master Prompt</button></div></section>
+<section class="card hidden" id="result"><h2>3. Master Prompt DoodlePrint</h2><div class="notice">Tempel prompt ini ke ChatGPT, Gemini, atau AI lain. Setelah itu cukup ketik <b>Cover</b>, <b>Halaman 1</b>, <b>Halaman 2</b>, dst.</div><div class="pw"><button class="secondary copy" onclick="copyIt()">📋 Copy</button><textarea id="out" class="prompt" readonly></textarea></div><div class="actions"><button class="secondary" onclick="copyIt()">📋 Copy Prompt</button><button class="secondary" onclick="newProject()">Project Baru</button></div></section><div class="foot">DoodlePrint • AI Worksheet Prompt Generator</div></main>
+<script>
+const $=id=>document.getElementById(id), v=id=>$(id).value.trim();let d={};
+function confirmData(){if(!v('theme'))return alert('Tema Utama wajib diisi.');let n=+v('pages');if(n<1||n>100)return alert('Jumlah halaman harus 1–100.');d={activity:v('activity'),theme:v('theme'),age:v('age'),pages:n,child:v('child')||'Tidak dicantumkan',style:v('style'),format:v('format'),lang:document.querySelector('input[name=lang]:checked').value};let a=[['Aktivitas',d.activity],['Tema',d.theme],['Target Usia',d.age],['Jumlah',d.pages+' halaman'],['Nama',d.child],['Gaya',d.style],['Format',d.format],['Bahasa',d.lang==='id'?'Indonesia':'English']];$('summary').innerHTML=a.map(x=>`<div class="item"><small>${x[0]}</small><b>${esc(x[1])}</b></div>`).join('');$('confirm').classList.remove('hidden');$('result').classList.add('hidden');$('confirm').scrollIntoView({behavior:'smooth'})}
+function esc(s){return s.replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]))}
+function generate(){$('out').value=d.lang==='id'?idPrompt():enPrompt();$('result').classList.remove('hidden');$('result').scrollIntoView({behavior:'smooth'})}
+function idPrompt(){return `DOODLEPRINT — MASTER PROMPT WORKSHEET
+
+PERAN
+Kamu adalah AI worksheet illustrator dan educational activity designer. Jadikan aturan proyek berikut sebagai aturan tetap selama percakapan ini.
+
+PROJECT SETTINGS
+• Aktivitas: ${d.activity}
+• Tema: ${d.theme}
+• Target usia: ${d.age}
+• Total halaman: ${d.pages}
+• Nama anak: ${d.child}
+• Gaya visual: ${d.style}
+• Format: ${d.format}
+
+TUJUAN
+Buat worksheet anak yang aman, menarik, sederhana, mudah dipahami, sesuai usia, dan konsisten sebagai satu paket.
+
+ATURAN KONSISTENSI
+1. Pertahankan tema, gaya, kualitas garis, proporsi karakter/objek, dan tingkat kompleksitas di seluruh proyek.
+2. Setiap halaman harus memiliki konsep atau komposisi berbeda; jangan mengulang halaman sebelumnya.
+3. Sesuaikan jumlah objek, ukuran, instruksi, dan tingkat kesulitan dengan usia ${d.age}.
+4. Gunakan komposisi bersih dan ruang kerja yang cukup.
+5. Hindari elemen menakutkan, kekerasan, atau tidak sesuai usia.
+6. Jika nama anak digunakan, eja persis “${d.child}”.
+7. Jangan mengubah tema utama tanpa perintah pengguna.
+8. Jangan membuat halaman di luar 1–${d.pages}.
+9. Jangan membuat semua halaman sekaligus kecuali diminta.
+
+ATURAN AKTIVITAS
+Aktivitas harus benar-benar dapat dikerjakan anak usia ${d.age}. Untuk aktivitas yang memerlukan garis, angka, huruf, pasangan, maze, atau puzzle, semua elemen harus jelas, tidak bertumpuk, dan dapat diselesaikan. Untuk mewarnai gunakan bentuk sederhana, outline hitam tebal dan bersih, latar putih, tanpa shading, dan area yang akan diwarnai tidak diberi warna.
+
+COMMAND WORKFLOW
+Tunggu perintah pengguna.
+
+“Cover” → buat HANYA cover worksheet. Cover mewakili tema ${d.theme}, usia ${d.age}, gaya ${d.style}, format ${d.format}; jangan membuat halaman aktivitas.
+
+“Halaman N” atau “Page N” → jika N 1–${d.pages}, buat HANYA halaman N dengan konsep berbeda namun tetap konsisten. Jangan membuat halaman lain. Jika di luar rentang, jelaskan rentangnya.
+
+“Preview” → berikan konsep singkat Cover dan Halaman 1–${d.pages}; jangan membuat gambar.
+
+“Regenerate Halaman N” → buat ulang HANYA halaman N dengan komposisi berbeda.
+
+“Variasi Halaman N” → buat satu alternatif untuk HANYA halaman N.
+
+ATURAN OUTPUT
+• Siap digunakan sebagai worksheet anak.
+• Prioritaskan keterbacaan, komposisi bersih, dan kesesuaian usia.
+• Jangan tambahkan watermark, logo AI, teks acak, atau objek penting yang terpotong.
+• Ikuti format ${d.format}.
+• Fokus hanya pada halaman yang diminta.
+
+NEGATIVE PROMPT
+photorealistic, overly complex details, scary expressions, horror, violence, weapons, distorted anatomy, extra limbs, duplicate objects, cluttered composition, tiny unreadable elements, cropped main subject, watermark, logo, random text, misspelled text, inappropriate content for children.
+
+SEKARANG TUNGGU PERINTAH PENGGUNA. Jangan membuat gambar sebelum ada perintah seperti “Cover”, “Halaman 1”, atau command lain di atas.`}
+function enPrompt(){return `DOODLEPRINT — MASTER WORKSHEET PROMPT
+
+ROLE
+You are the AI worksheet illustrator and educational activity designer. Treat the following project rules as persistent instructions throughout this conversation.
+
+PROJECT SETTINGS
+• Activity: ${d.activity}
+• Theme: ${d.theme}
+• Target age: ${d.age}
+• Total pages: ${d.pages}
+• Child name: ${d.child}
+• Visual style: ${d.style}
+• Format: ${d.format}
+
+GOAL
+Create safe, engaging, simple, age-appropriate worksheets that work as one visually consistent set.
+
+CONSISTENCY RULES
+1. Keep the theme, visual style, line quality, character/object proportions, and complexity consistent.
+2. Every page must have a distinct concept or composition; do not repeat previous pages.
+3. Adjust object count, size, instructions, and difficulty for age ${d.age}.
+4. Use clean compositions with enough working space.
+5. Avoid frightening, violent, or age-inappropriate elements.
+6. If the child's name is used, spell it exactly “${d.child}”.
+7. Do not change the main theme unless explicitly instructed.
+8. Do not create pages outside 1–${d.pages}.
+9. Do not generate all pages at once unless explicitly requested.
+
+ACTIVITY RULES
+The activity must genuinely suit children aged ${d.age}. Any lines, numbers, letters, matching pairs, maze paths, or puzzle elements must be clear, non-overlapping, and solvable. For coloring: simple shapes, thick clean black outlines, white background, no shading, and no filled color in intended coloring areas.
+
+COMMAND WORKFLOW
+Wait for the user's command.
+
+“Cover” → generate ONLY the worksheet cover. It must represent ${d.theme}, age ${d.age}, style ${d.style}, format ${d.format}; do not generate an activity page.
+
+“Page N” or “Halaman N” → if N is 1–${d.pages}, generate ONLY page N with a distinct concept while remaining consistent. Do not generate other pages. If outside the range, explain the valid range.
+
+“Preview” → provide short concepts for Cover and Pages 1–${d.pages}; do not generate images.
+
+“Regenerate Page N” → regenerate ONLY page N with a different composition.
+
+“Variation Page N” → create one alternative for ONLY page N.
+
+OUTPUT RULES
+• Ready to use as a children's worksheet.
+• Prioritize readability, clean composition, and age appropriateness.
+• No watermark, AI logo, random text, or cropped important objects.
+• Follow ${d.format}.
+• Focus only on the requested page.
+
+NEGATIVE PROMPT
+photorealistic, overly complex details, scary expressions, horror, violence, weapons, distorted anatomy, extra limbs, duplicate objects, cluttered composition, tiny unreadable elements, cropped main subject, watermark, logo, random text, misspelled text, inappropriate content for children.
+
+NOW WAIT FOR THE USER'S COMMAND. Do not generate an image until the user gives a command such as “Cover”, “Page 1”, or another defined command.`}
+function copyIt(){navigator.clipboard?.writeText($('out').value).then(()=>alert('Prompt berhasil disalin!')).catch(()=>{$('out').select();document.execCommand('copy');alert('Prompt berhasil disalin!')})}function hide(id){$(id).classList.add('hidden')}function newProject(){hide('result');hide('confirm');$('form').scrollIntoView({behavior:'smooth'})}
+</script></body></html>
