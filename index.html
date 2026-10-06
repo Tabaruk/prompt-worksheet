@@ -92,6 +92,13 @@ textarea.prompt{
   font-size:12.5px;line-height:1.58;padding-top:50px;background:#fffdfb;
 }
 .copy-top{position:absolute;right:10px;top:10px;z-index:2}
+.prompt-language{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
+.prompt-language label{font-size:13px;color:var(--navy);font-weight:800}
+.prompt-language select{width:auto;min-width:170px;padding:10px 12px}
+.section-title{display:flex;align-items:center;gap:9px}
+.section-title .section-icon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--cyan-soft);font-size:18px;flex:0 0 auto}
+.field-label{display:flex;align-items:center;gap:7px}
+.field-icon{font-size:17px;line-height:1}
 .footer{text-align:center;color:#7c898f;font-size:11px;margin-top:24px}
 .badge{display:inline-block;padding:4px 8px;border-radius:99px;background:var(--cyan-soft);color:var(--navy);font-size:11px;font-weight:800}
 @media(max-width:720px){
@@ -123,10 +130,10 @@ textarea.prompt{
   </header>
 
   <section class="card">
-    <h2>Aktivitas dan Tema Utama</h2>
+    <h2 class="section-title"><span class="section-icon">🎨</span>Aktivitas dan Tema Utama</h2>
     <div class="grid">
       <div class="field">
-        <label for="activity">Jenis Aktivitas</label>
+        <label for="activity"><span class="field-label"><span class="field-icon">✏️</span>Jenis Aktivitas</span></label>
         <select id="activity" onchange="toggleCustom('activity')">
           <option>Mewarnai</option><option>Mencocokkan</option><option>Menebalkan / Tracing</option>
           <option>Berhitung</option><option>Menulis</option><option>Maze</option><option>Puzzle</option>
@@ -137,12 +144,12 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="theme">Tema Worksheet</label>
+        <label for="theme"><span class="field-label"><span class="field-icon">🍎</span>Tema Worksheet</span></label>
         <input id="theme" placeholder="Contoh: Buah-buahan">
       </div>
 
       <div class="field">
-        <label for="format">Format</label>
+        <label for="format"><span class="field-label"><span class="field-icon">📄</span>Format</span></label>
         <select id="format" onchange="toggleCustom('format')">
           <option selected>F4 Portrait</option><option>F4 Landscape</option>
           <option>A4 Portrait</option><option>A4 Landscape</option><option>Square</option>
@@ -153,10 +160,10 @@ textarea.prompt{
     </div>
 
     <div class="divider"></div>
-    <h2>Target dan Sasaran</h2>
+    <h2 class="section-title"><span class="section-icon">🎯</span>Target dan Sasaran</h2>
     <div class="grid">
       <div class="field">
-        <label for="age">Usia Anak</label>
+        <label for="age"><span class="field-label"><span class="field-icon">👶</span>Usia Anak</span></label>
         <select id="age" onchange="toggleCustom('age')">
           <option>2–3 Tahun</option><option>3–4 Tahun</option><option selected>4–5 Tahun</option>
           <option>5–6 Tahun</option><option>6–7 Tahun</option><option>7–8 Tahun</option><option>8–10 Tahun</option>
@@ -166,13 +173,13 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="pages">Jumlah Halaman</label>
+        <label for="pages"><span class="field-label"><span class="field-icon">📚</span>Jumlah Halaman</span></label>
         <input id="pages" type="number" min="1" max="100" value="5" placeholder="Contoh: 5">
         <span class="help">Ditentukan sendiri oleh pengguna, 1–100 halaman.</span>
       </div>
 
       <div class="field">
-        <label for="difficulty">Tingkat Kesulitan</label>
+        <label for="difficulty"><span class="field-label"><span class="field-icon">🧩</span>Tingkat Kesulitan</span></label>
         <select id="difficulty" onchange="toggleCustom('difficulty')">
           <option>Sangat Mudah</option><option selected>Mudah</option><option>Sedang</option>
           <option>Sulit</option><option>Sangat Sulit</option><option>Custom</option>
@@ -182,10 +189,10 @@ textarea.prompt{
     </div>
 
     <div class="divider"></div>
-    <h2>Visual Style</h2>
+    <h2 class="section-title"><span class="section-icon">🖌️</span>Visual Style</h2>
     <div class="grid">
       <div class="field">
-        <label for="visual">Gaya Visual</label>
+        <label for="visual"><span class="field-label"><span class="field-icon">🎨</span>Gaya Visual</span></label>
         <select id="visual" onchange="toggleCustom('visual')">
           <option selected>3D Soft</option><option>3D Cute</option><option>Cute Cartoon</option>
           <option>Storybook Vector</option><option>Kawaii</option><option>Flat Vector</option>
@@ -195,7 +202,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="pageFrame">Latar dan Bingkai Halaman</label>
+        <label for="pageFrame"><span class="field-label"><span class="field-icon">🖼️</span>Latar dan Bingkai Halaman</span></label>
         <select id="pageFrame" onchange="toggleCustom('pageFrame')">
           <option selected>Garis Tipis Minimalis (Sesuai Warna Latar)</option>
           <option>Bingkai Pastel Lembut</option><option>Bingkai Putih Minimalis</option>
@@ -205,7 +212,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="decoration">Tingkat Dekorasi Internal</label>
+        <label for="decoration"><span class="field-label"><span class="field-icon">✨</span>Tingkat Dekorasi Internal</span></label>
         <select id="decoration" onchange="toggleCustom('decoration')">
           <option>Tanpa Dekorasi</option><option selected>Minimalis</option><option>Sedang</option>
           <option>Ceria</option><option>Penuh Dekorasi</option><option>Custom</option>
@@ -214,7 +221,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="objectFrame">Bingkai Objek (Object Frame)</label>
+        <label for="objectFrame"><span class="field-label"><span class="field-icon">🔲</span>Bingkai Objek (Object Frame)</span></label>
         <select id="objectFrame" onchange="toggleCustom('objectFrame')">
           <option selected>Kotak Rounded Pastel Solid</option>
           <option>Kotak Garis Tipis</option><option>Kotak Garis Putus-putus (Dashed Border)</option>
@@ -226,16 +233,16 @@ textarea.prompt{
     </div>
 
     <div class="divider"></div>
-    <h2>Copywriting &amp; Specifications</h2>
+    <h2 class="section-title"><span class="section-icon">✍️</span>Copywriting &amp; Specifications</h2>
     <div class="grid">
       <div class="field full">
-        <label for="title">Judul Worksheet <span class="help">(opsional)</span></label>
+        <label for="title"><span class="field-label"><span class="field-icon">🏷️</span>Judul Worksheet</span> <span class="help">(opsional)</span></label>
         <input id="title" placeholder="Contoh: Match the Animals">
         <span class="help">Jika kosong, AI menentukan judul yang sesuai dengan aktivitas, tema, dan bahasa worksheet.</span>
       </div>
 
       <div class="field">
-        <label for="language">Bahasa Teks Worksheet</label>
+        <label for="language"><span class="field-label"><span class="field-icon">🌐</span>Bahasa Teks Worksheet</span></label>
         <select id="language" onchange="toggleCustom('language')">
           <option selected>Bahasa Indonesia</option><option>English</option><option>العربية (Arab)</option>
           <option>Indonesia + English</option><option>Indonesia + Arabic</option><option>English + Arabic</option>
@@ -245,7 +252,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="header">Informasi Anak (Header)</label>
+        <label for="header"><span class="field-label"><span class="field-icon">👤</span>Informasi Anak (Header)</span></label>
         <select id="header" onchange="toggleCustom('header')">
           <option selected>Tidak Ada</option><option>Nama</option><option>Nama + Kelas</option>
           <option>Nama + Tanggal</option><option>Nama + Kelas + Tanggal</option><option>Custom</option>
@@ -254,7 +261,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="connector">Gaya Penghubung (Titik/Garis)</label>
+        <label for="connector"><span class="field-label"><span class="field-icon">⋯</span>Gaya Penghubung (Titik/Garis)</span></label>
         <select id="connector" onchange="toggleCustom('connector')">
           <option selected>Titik Penuh (Dotted Bullet)</option><option>Titik Putus-putus</option>
           <option>Garis Tipis</option><option>Garis Putus-putus</option><option>Garis Melengkung</option>
@@ -264,7 +271,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="connectorColor">Warna Titik/Garis Penghubung</label>
+        <label for="connectorColor"><span class="field-label"><span class="field-icon">🎨</span>Warna Titik/Garis Penghubung</span></label>
         <select id="connectorColor" onchange="toggleCustom('connectorColor')">
           <option selected>Hitam Penuh</option><option>Abu-abu</option><option>Putih</option>
           <option>Sesuai Warna Utama</option><option>Pastel</option><option>Custom</option>
@@ -273,7 +280,7 @@ textarea.prompt{
       </div>
 
       <div class="field">
-        <label for="matching">Posisi Matching</label>
+        <label for="matching"><span class="field-label"><span class="field-icon">↔️</span>Posisi Matching</span></label>
         <select id="matching" onchange="toggleCustom('matching')">
           <option selected>Kolom Kiri → Kolom Kanan</option><option>Kolom Kanan → Kolom Kiri</option>
           <option>Atas → Bawah</option><option>Bawah → Atas</option><option>Acak / Random</option><option>Custom</option>
@@ -282,12 +289,19 @@ textarea.prompt{
       </div>
 
       <div class="field full">
-        <label for="objects">Daftar Objek Spesifik <span class="help">(opsional)</span></label>
+        <label for="objects"><span class="field-label"><span class="field-icon">📋</span>Daftar Objek Spesifik</span> <span class="help">(opsional)</span></label>
         <textarea id="objects" rows="3" placeholder="Contoh: Apel, pisang, jeruk, semangka, mangga"></textarea>
         <span class="help">Jika diisi, objek ini menjadi acuan utama dan tidak diganti sembarangan oleh AI.</span>
       </div>
     </div>
 
+    <div class="prompt-language">
+      <label for="promptLanguage">🌐 Bahasa Prompt</label>
+      <select id="promptLanguage">
+        <option value="id" selected>🇮🇩 Indonesia</option>
+        <option value="en">🇬🇧 English</option>
+      </select>
+    </div>
     <div class="actions">
       <button class="primary" onclick="generatePrompt()">✨ Buat Master Prompt</button>
     </div>
@@ -309,7 +323,7 @@ textarea.prompt{
     </div>
   </section>
 
-  <div class="footer">Versi 1.1 | 04-10-2026</div>
+  <div class="footer">Versi 1.2 | 06-10-2026</div>
 </div>
 
 <script>
@@ -337,152 +351,161 @@ function generatePrompt(){
   if(!pages || pages<1 || pages>100){alert('Jumlah halaman harus 1–100.');document.getElementById('pages').focus();return}
 
   const d={
-    activity:getValue('activity'),
-    theme, format:getValue('format'),
-    age:getValue('age'), pages,
-    difficulty:getValue('difficulty'),
-    visual:getValue('visual'),
-    pageFrame:getValue('pageFrame'),
-    decoration:getValue('decoration'),
-    objectFrame:getValue('objectFrame'),
-    title:document.getElementById('title').value.trim(),
-    language:getValue('language'),
-    header:getValue('header'),
-    connector:getValue('connector'),
-    connectorColor:getValue('connectorColor'),
-    matching:getValue('matching'),
-    objects:document.getElementById('objects').value.trim()
+    activity:getValue('activity'), theme, format:getValue('format'), age:getValue('age'), pages,
+    difficulty:getValue('difficulty'), visual:getValue('visual'), pageFrame:getValue('pageFrame'),
+    decoration:getValue('decoration'), objectFrame:getValue('objectFrame'),
+    title:document.getElementById('title').value.trim(), language:getValue('language'),
+    header:getValue('header'), connector:getValue('connector'), connectorColor:getValue('connectorColor'),
+    matching:getValue('matching'), objects:document.getElementById('objects').value.trim()
   };
-
-  const titleRule=d.title
-    ? `Gunakan judul worksheet persis: "${d.title}".`
-    : `Judul worksheet tidak ditentukan pengguna. Tentukan judul yang relevan, singkat, natural, dan sesuai tema "${d.theme}" serta bahasa teks worksheet. Jangan membuat judul yang terlalu panjang.`;
-
-  const objectRule=d.objects
-    ? `Daftar objek spesifik WAJIB menjadi acuan utama: ${d.objects}. Gunakan objek tersebut sesuai kebutuhan aktivitas. Jangan mengganti objek dengan objek lain tanpa alasan yang jelas.`
-    : `Tidak ada daftar objek spesifik. Pilih objek yang paling relevan dengan tema "${d.theme}" dan sesuai usia.`;
-
-  const prompt=`DOODLEPRINT — MASTER WORKSHEET PROMPT
-========================================
-
-PERAN
-Kamu adalah AI worksheet designer, children's educational activity designer, visual art director, dan image-generation prompt specialist untuk satu proyek worksheet anak.
-
-Semua spesifikasi di bawah adalah ATURAN PROYEK yang harus dipertahankan sepanjang percakapan. Jangan mengubahnya kecuali pengguna meminta perubahan secara eksplisit.
-
-PROJECT SPECIFICATIONS
-----------------------
-Aktivitas utama      : ${d.activity}
-Tema worksheet       : ${d.theme}
-Format halaman       : ${d.format}
-Usia anak            : ${d.age}
-Jumlah halaman       : ${d.pages}
-Tingkat kesulitan    : ${d.difficulty}
-
-VISUAL STYLE
-------------
-Gaya visual                  : ${d.visual}
-Latar & bingkai halaman     : ${d.pageFrame}
-Tingkat dekorasi internal   : ${d.decoration}
-Bingkai objek               : ${d.objectFrame}
-
-COPYWRITING & SPECIFICATIONS
-----------------------------
-Judul worksheet             : ${d.title || '(otomatis oleh AI)'}
-Bahasa teks worksheet       : ${d.language}
-Informasi anak pada header  : ${d.header}
-Gaya penghubung             : ${d.connector}
-Warna penghubung            : ${d.connectorColor}
-Posisi matching             : ${d.matching}
-
-${objectRule}
-
-ATURAN DESAIN UMUM
-------------------
-1. Semua halaman adalah bagian dari SATU paket worksheet. Jaga konsistensi gaya visual, karakter, proporsi, bentuk objek, kualitas rendering, tipografi, warna, dan tingkat kompleksitas.
-2. Setiap halaman harus mempunyai komposisi atau tujuan aktivitas yang berbeda. Jangan sekadar menduplikasi halaman sebelumnya.
-3. Tingkat kesulitan harus benar-benar sesuai dengan usia ${d.age} dan level ${d.difficulty}.
-4. Gunakan layout yang bersih, mudah dipahami anak, dan memiliki ruang kerja yang cukup.
-5. Jangan membuat elemen terlalu kecil, terlalu padat, atau sulit dibedakan.
-6. Jangan menambahkan watermark, logo AI, tanda tangan, atau teks acak.
-7. Jangan memotong objek utama atau elemen penting dari area halaman.
-8. Gunakan format ${d.format} secara konsisten.
-9. ${titleRule}
-10. Header informasi anak harus mengikuti pilihan "${d.header}". Jika "Tidak Ada", jangan menambahkan area nama/kelas/tanggal secara otomatis.
-11. Aturan titik/garis penghubung hanya digunakan jika relevan dengan aktivitas. Jika aktivitas tidak membutuhkan penghubung, jangan memaksakannya.
-12. Aturan posisi matching hanya digunakan untuk aktivitas matching atau aktivitas sejenis.
-13. ${objectRule}
-
-ATURAN COVER
-------------
-Jika pengguna mengetik "Cover":
-- Buat HANYA cover.
-- Cover harus FULL COLOR, menarik, ramah anak, dan terlihat seperti cover produk worksheet yang siap digunakan.
-- Cover boleh memakai ilustrasi utama yang sesuai tema "${d.theme}".
-- Cover TIDAK mengikuti aturan black-and-white line art dari halaman mewarnai.
-- Cover tetap mengikuti gaya visual "${d.visual}", format ${d.format}, dan nuansa dekorasi "${d.decoration}".
-- Gunakan judul yang sudah ditentukan pengguna; jika kosong, buat judul yang sesuai.
-- Jangan membuat halaman aktivitas bersamaan dengan cover.
-
-ATURAN HALAMAN AKTIVITAS
-------------------------
-Jika pengguna mengetik "Halaman N" atau "Page N":
-- Buat HANYA halaman N.
-- N harus berada pada rentang 1–${d.pages}.
-- Jangan membuat halaman lain.
-- Halaman harus mengikuti aktivitas "${d.activity}", tema "${d.theme}", usia "${d.age}", tingkat kesulitan "${d.difficulty}", gaya "${d.visual}", dan seluruh spesifikasi visual/copywriting di atas.
-- Pastikan konsep halaman berbeda dari halaman lainnya tetapi tetap terasa sebagai satu paket.
-- Terapkan bingkai halaman "${d.pageFrame}", dekorasi internal "${d.decoration}", dan object frame "${d.objectFrame}" sesuai konteks.
-- Untuk aktivitas matching, gunakan posisi "${d.matching}" dan gaya penghubung "${d.connector}" dengan warna "${d.connectorColor}".
-- Untuk aktivitas mewarnai atau aktivitas yang memang membutuhkan line art, gunakan outline yang bersih dan jelas. Aturan tersebut TIDAK berlaku otomatis untuk cover.
-- Jika aktivitas menggunakan warna, pertahankan palet yang konsisten dengan gaya visual dan usia target.
-
-COMMAND WORKFLOW
-----------------
-Jangan membuat gambar sampai pengguna memberikan perintah.
-
-"Cover"
-→ Generate hanya cover.
-
-"Halaman 1" / "Page 1"
-→ Generate hanya halaman 1.
-
-"Halaman N" / "Page N"
-→ Generate hanya halaman N selama N berada di 1–${d.pages}.
-
-"Preview"
-→ Jangan membuat gambar. Tampilkan daftar konsep singkat untuk Cover dan Halaman 1–${d.pages}, masing-masing berbeda.
-
-"Regenerate Halaman N" / "Regenerate Page N"
-→ Buat ulang hanya halaman N dengan komposisi berbeda tetapi tetap mengikuti seluruh spesifikasi proyek.
-
-"Variasi Halaman N" / "Variation Page N"
-→ Buat satu alternatif untuk halaman N.
-
-Jika pengguna meminta halaman di luar 1–${d.pages}, jelaskan bahwa proyek hanya memiliki ${d.pages} halaman dan jangan membuat halaman tersebut.
-
-NEGATIVE PROMPT / HINDARI
--------------------------
-photorealistic jika tidak sesuai gaya, overly complex details, scary expressions, horror, violence, weapons, distorted anatomy, extra limbs, duplicate objects, cluttered composition, tiny unreadable elements, cropped main subject, watermark, AI logo, random text, misspelled text, inappropriate content for children.
-
-INSTRUKSI TERAKHIR
-------------------
-Master Prompt ini hanya menetapkan aturan proyek. Setelah membacanya, tunggu perintah pengguna berikutnya.
-Jangan langsung membuat cover atau halaman sampai pengguna memintanya.
-
-Contoh perintah pengguna:
-Cover
-Halaman 1
-Halaman 2
-Preview
-Regenerate Halaman 3
-Variasi Halaman 4`;
-
-  document.getElementById('prompt').value=prompt;
-  const result=document.getElementById('resultCard');
-  result.style.display='block';
+  const promptLang=document.getElementById('promptLanguage').value;
+  document.getElementById('prompt').value=promptLang==='id'?buildID(d):buildEN(d);
+  const result=document.getElementById('resultCard'); result.style.display='block';
   result.scrollIntoView({behavior:'smooth',block:'start'});
 }
+function buildID(d){
+  const title=d.title||`Tentukan judul singkat yang natural sesuai aktivitas "${d.activity}" dan tema "${d.theme}".`;
+  const objects=d.objects?`Objek wajib: ${d.objects}. Jangan menggantinya tanpa alasan.`:`Objek dipilih AI sesuai tema "${d.theme}" dan usia anak.`;
+  return `DOODLEPRINT — MASTER WORKSHEET PROMPT v1.2
+
+PERAN
+Kamu adalah AI worksheet designer, educational activity designer, visual art director, dan image-generation prompt specialist. Semua spesifikasi di bawah adalah aturan tetap untuk SATU proyek worksheet.
+
+PROJECT
+• Aktivitas: ${d.activity}
+• Tema: ${d.theme}
+• Format: ${d.format}
+• Usia: ${d.age}
+• Jumlah halaman: ${d.pages}
+• Kesulitan: ${d.difficulty}
+
+VISUAL
+• Gaya: ${d.visual}
+• Latar & bingkai halaman: ${d.pageFrame}
+• Dekorasi internal: ${d.decoration}
+• Object frame: ${d.objectFrame}
+
+COPYWRITING & SPECIFICATIONS
+• Judul: ${d.title||'(otomatis oleh AI)'}
+• Bahasa teks worksheet: ${d.language}
+• Header anak: ${d.header}
+• Penghubung: ${d.connector}
+• Warna penghubung: ${d.connectorColor}
+• Posisi matching: ${d.matching}
+• ${objects}
+
+ATURAN INTI
+1. Pertahankan konsistensi gaya, warna, karakter/objek, tipografi, proporsi, frame, dan kualitas rendering di seluruh proyek.
+2. Setiap halaman harus berbeda secara isi/komposisi tetapi tetap terasa satu paket.
+3. Sesuaikan semua elemen dengan usia ${d.age} dan kesulitan ${d.difficulty}; jangan terlalu padat atau terlalu kecil.
+4. Ikuti format ${d.format}. Jangan memotong objek penting, jangan menambah watermark/logo AI/teks acak.
+5. Header hanya mengikuti pilihan "${d.header}". Jika "Tidak Ada", jangan menambahkan Nama/Kelas/Tanggal.
+6. Judul mengikuti input pengguna. Jika kosong, ${title}
+7. Penghubung dan posisi matching hanya dipakai jika relevan dengan aktivitas.
+
+TEMPLATE HALAMAN — JIKA RELEVAN
+Untuk aktivitas Mewarnai atau worksheet yang menggunakan sistem contoh + gambar utama, gunakan hierarki berikut:
+• Header paling atas: ${d.header} sesuai pilihan.
+• Di bawah header: judul, misalnya "Warnai Aku"; judul tidak terlalu besar.
+• Di bawah judul: instruksi singkat, jelas, ramah anak, dan tidak terlalu besar.
+• Area referensi warna: tampilkan palet warna yang benar-benar sesuai dengan gambar utama. Letakkan GAMBAR BERWARNA REFERENSI berukuran kecil di sebelah palet, bukan sebagai gambar besar.
+• Tampilkan nama objek dalam bentuk OUTLINE, misalnya "APEL", sebelum/di sekitar gambar utama sesuai komposisi yang paling rapi.
+• Gambar utama yang dikerjakan anak harus menjadi elemen terbesar: line art/outline bersih jika aktivitasnya mewarnai.
+• Di bawah gambar utama: tampilkan nama objek dalam gaya tracing/dotted handwriting yang menyerupai worksheet anak seperti KG Primary; jika font tersebut tidak tersedia, gunakan gaya dotted tracing yang setara. Jangan mengklaim memakai font tertentu bila tidak tersedia.
+• Naungi kelompok konten utama (palet + referensi warna kecil + outline nama objek + gambar utama + tracing text) dengan bingkai rounded/dashed atau pilihan Object Frame pengguna, tanpa membuat frame mengganggu area kerja.
+• Nomor halaman di tengah bagian bawah kertas: angka halaman di dalam bentuk 12-pointed star. Contoh Halaman 1 = "1" di dalam 12-pointed star.
+• Jaga hierarki: referensi kecil → instruksi → objek utama besar → tracing → nomor halaman. Jangan membuat referensi warna mengalahkan gambar utama.
+
+ATURAN COVER
+Jika pengguna mengetik "Cover": buat HANYA cover, FULL COLOR, menarik, ramah anak, sesuai ${d.visual}, ${d.format}, tema "${d.theme}", dan judul. Jangan menerapkan aturan black-and-white coloring page ke cover.
+
+PERINTAH
+"Cover" → hanya cover.
+"Halaman N" / "Page N" → hanya halaman N jika N 1–${d.pages}.
+"Preview" → tampilkan konsep Cover dan halaman 1–${d.pages}, tanpa gambar.
+"Regenerate Halaman N" → buat ulang hanya halaman N dengan komposisi berbeda.
+"Variasi Halaman N" → buat satu alternatif untuk halaman N.
+
+Jika N di luar 1–${d.pages}, jangan membuat halaman tersebut.
+
+HINDARI
+photorealistic bila tidak sesuai gaya, detail berlebihan, layout penuh sesak, objek kecil tak terbaca, objek terpotong, anatomi rusak, duplikasi, watermark, AI logo, random text, salah eja, dan konten tidak sesuai anak.
+
+TUNGGU PERINTAH
+Jangan langsung membuat gambar setelah membaca Master Prompt. Tunggu "Cover", "Halaman 1", atau perintah lain di atas.`;
+}
+function buildEN(d){
+  const title=d.title||`Choose a short, natural title that fits the activity "${d.activity}" and theme "${d.theme}".`;
+  const objects=d.objects?`Required objects: ${d.objects}. Do not replace them without a clear reason.`:`Choose objects that best fit the theme "${d.theme}" and target age.`;
+  return `DOODLEPRINT — MASTER WORKSHEET PROMPT v1.2
+
+ROLE
+You are an AI worksheet designer, educational activity designer, visual art director, and image-generation prompt specialist. Treat all specifications below as persistent rules for ONE worksheet project.
+
+PROJECT
+• Activity: ${d.activity}
+• Theme: ${d.theme}
+• Format: ${d.format}
+• Age: ${d.age}
+• Total pages: ${d.pages}
+• Difficulty: ${d.difficulty}
+
+VISUAL
+• Style: ${d.visual}
+• Page background & frame: ${d.pageFrame}
+• Internal decoration: ${d.decoration}
+• Object frame: ${d.objectFrame}
+
+COPYWRITING & SPECIFICATIONS
+• Title: ${d.title||'(AI-generated)'}
+• Worksheet text language: ${d.language}
+• Child header: ${d.header}
+• Connector style: ${d.connector}
+• Connector color: ${d.connectorColor}
+• Matching position: ${d.matching}
+• ${objects}
+
+CORE RULES
+1. Keep style, colors, characters/objects, typography, proportions, frames, and rendering quality consistent across the project.
+2. Every page must differ in content/composition while still feeling like one coherent set.
+3. Match all elements to age ${d.age} and difficulty ${d.difficulty}; avoid clutter and tiny elements.
+4. Follow ${d.format}. Never crop important objects; never add watermarks, AI logos, or random text.
+5. Child header must follow "${d.header}". If "No Information"/"Tidak Ada" is selected, do not add Name/Class/Date fields.
+6. Use the user's title. If empty, ${title}
+7. Use connector and matching-position rules only when relevant to the activity.
+
+PAGE TEMPLATE — WHEN RELEVANT
+For Coloring or worksheets using a reference + main-image system, use this hierarchy:
+• Top header: ${d.header}, exactly as selected.
+• Below header: a title such as "Color Me" / "Warnai Aku"; keep it moderate in size.
+• Below title: a short, clear, child-friendly instruction; do not make it oversized.
+• Color reference area: show a palette that matches the main image. Place a SMALL COLORED REFERENCE IMAGE beside the palette, not as a large image.
+• Show the object name in OUTLINE form, e.g. "APPLE", around/before the main image according to the cleanest composition.
+• The main child activity image must be the largest element: clean line art/outline for coloring activities.
+• Below the main image: show the object name in dotted tracing handwriting similar to children's worksheet handwriting such as KG Primary; if the exact font is unavailable, use an equivalent dotted tracing style. Do not claim to use a font that is unavailable.
+• Enclose the main content group (palette + small colored reference + outline object name + main image + tracing text) with a rounded/dashed frame or the selected Object Frame, without interfering with the working area.
+• At the bottom center: place the page number inside a 12-pointed star. Example Page 1 = "1" inside a 12-pointed star.
+• Maintain hierarchy: small reference → instruction → large main image → tracing → page number. The color reference must never overpower the main image.
+
+COVER RULE
+If the user types "Cover": generate ONLY the cover, FULL COLOR, attractive and child-friendly, following ${d.visual}, ${d.format}, theme "${d.theme}", and the title. Do not apply black-and-white coloring-page rules to the cover.
+
+COMMANDS
+"Cover" → cover only.
+"Halaman N" / "Page N" → page N only if N is 1–${d.pages}.
+"Preview" → list concepts for Cover and pages 1–${d.pages}, no images.
+"Regenerate Halaman N" → regenerate only page N with a different composition.
+"Variasi Halaman N" → create one alternative for page N.
+
+If N is outside 1–${d.pages}, do not generate that page.
+
+AVOID
+photorealistic when inconsistent with the selected style, excessive detail, cluttered layouts, tiny unreadable elements, cropped objects, distorted anatomy, duplicates, watermarks, AI logos, random text, misspellings, and age-inappropriate content.
+
+WAIT FOR COMMAND
+Do not generate an image immediately after reading this Master Prompt. Wait for "Cover", "Halaman 1", or another defined command.`;
+}
+
 async function copyPrompt(){
   const t=document.getElementById('prompt');
   try{
